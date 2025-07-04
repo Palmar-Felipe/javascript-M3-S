@@ -42,7 +42,6 @@ Listar productos:
 Los productos se muestran automáticamente en la lista.
 
 
-Aquí tienes un ejemplo de contenido para el archivo README.md:
 
 ```markdown
 # CRUD de Productos
