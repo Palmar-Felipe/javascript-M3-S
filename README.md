@@ -63,7 +63,7 @@ Este proyecto es un sistema interactivo que permite al usuario gestionar product
 - **Axios**: Manejo de solicitudes HTTP.
 - **SweetAlert2**: Alertas dinámicas.
 - **JSON Server**: Servidor local para simular una API REST.
-
+```markdown
 ## Estuctura del proyecto
 
 JAVASCRIPT-M3-S/
