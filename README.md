@@ -43,7 +43,6 @@ Los productos se muestran automáticamente en la lista.
 
 
 
-```markdown
 # CRUD de Productos
 
 Este proyecto es un sistema interactivo que permite al usuario gestionar productos mediante un CRUD (Crear, Leer, Actualizar y Eliminar). Está desarrollado en JavaScript y utiliza `axios` para realizar solicitudes HTTP a un servidor local.
