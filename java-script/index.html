@@ -1,11 +1,45 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  
-</body>
-</html>
+  <head><!--metaestiquetas-->
+    <meta charset="UTF-8" />
+    <meta name="description"
+        content="sistema interactivo que permitirá al usuario ingresar datos y recibir mensajes dinámicos de manera estructurada. ">
+    <meta name="keywords" content="trabajo-1-de-java-script">
+    <meta name="sitedomain" content="https://github.com/Palmar-Felipe">
+    <meta name="author" content="Felipe Miguel Palmar Ramirez">
+    <meta name="desingner" content="Felipe Miguel Palmar Ramirez">
+    <meta name="copyright" content="© Felipe Miguel Palmar Ramirez. All rights reserved">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <meta name="revisit-after" content="10days">
+    <link rel="stylesheet" href="./src/css/style.css">
+    <title>CRUD</title>
+  </head>
+  <body>
+    <!--encabezado-->
+    <header>
+      <h1>Registro de productos</h1>
+    </header>
+    <!--interaccion para el usuario-->
+    <main>
+      <section>
+        <form action="">
+          <h2>Add Product</h2>
+          <input type="text" id="productName" placeholder="Product name">
+          <input type="number" id="productPrice" placeholder="Price">
+          <input type="text" id="productCategory" placeholder="Category">
+          <button id="addProductButton">Add Product</button>
+        </form>
+
+        <h3>Product List:</h3>
+        <ul id="productList"></ul>
+    
+      </section>
+    </main>
+    <!--pie de pagina-->
+    <footer>
+      <p>This is a practice project</p>
+    </footer>
+   <!--vinculo del java-script-->
+    <script type="module" src="./src/js/gestión_api.js"></script>
+  </body>
