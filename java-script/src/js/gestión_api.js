@@ -1,17 +1,19 @@
-
+// Import axios function
 import axios from "axios";
+
+// Import alerts
 import {
   alertEliminarProducto,
   alertErrorCampos,
-  alertErrorDuplicados,
   alertErrorNombreDuplicado,
   alertNuevoProductos,
+  alertPrecioMayorCero,
   limpiarCamposProducto,
-} from './datos-almacenados'
+} from './alert'
 
 let productos = [];
 let productoEditandoId = null;
-
+// Get elements from index.html
 let $nombreProducto = document.getElementById("productName");
 let $precioProducto = document.getElementById("productPrice");
 let $categoriaProducto = document.getElementById("productCategory");
@@ -26,16 +28,22 @@ function obtenerProductos(callback) {
       if (callback) callback();
     })
     .catch(err => {
-      console.error("Error al obtener productos", err);
+      console.error("Error fetching products", err);
     });
 }
 
+// Function to validate positive numbers and prevent duplicate names on click
 $botonAgregarProducto.addEventListener("click", () => {
   let nombre = $nombreProducto.value;
   let precio = parseFloat($precioProducto.value);
   let categoria = $categoriaProducto.value;
 
-  if (nombre === "" || isNaN(precio) || categoria === "") {
+  if (precio <= 0) {
+    alertPrecioMayorCero();
+    return;
+  }
+
+  if (nombre === " " || isNaN(precio) || categoria === " ") {
     alertErrorCampos();
     return;
   }
@@ -51,51 +59,52 @@ $botonAgregarProducto.addEventListener("click", () => {
     precio,
     categoria
   };
-
+  // Function to edit a product
   if (productoEditandoId) {
     axios.put(`http://localhost:3000/productos/${productoEditandoId}`, nuevoProducto)
       .then(res => {
         const index = productos.findIndex(p => p.id === productoEditandoId);
-        productos[index] = res.data;
+        productos[index] = res.data; // Update the product in the array
         alertNuevoProductos();
+        mostrarProductos(); // Update the product list in the interface
         limpiarCamposProducto();
         productoEditandoId = null;
-        mostrarProductos();
       })
       .catch(() => {
-        alertErrorDuplicados();
+        console.error("Error editing the product");
       });
-  } else {
+  } else { // Function to create a new product
     axios.post("http://localhost:3000/productos", nuevoProducto)
       .then(res => {
-        productos.push(res.data); // Agrega sin recargar toda la lista
+        productos.push(res.data);
         alertNuevoProductos();
-        limpiarCamposProducto();
         mostrarProductos();
+        limpiarCamposProducto();
       })
       .catch(() => {
-        alertErrorDuplicados();
+        console.error("Error adding the product");
       });
   }
 });
 
+// Function to display delete and edit buttons for products
 function mostrarProductos() {
   $listaProductos.innerHTML = "";
   productos.forEach((prod) => {
     $listaProductos.innerHTML += `<li>
-      nombre ${prod.nombre} - $${prod.precio} (${prod.categoria})
-      <button class="deleteProduct" data-id="${prod.id}">Eliminar</button>
-      <button class="editProduct" data-id="${prod.id}">Editar</button>
+      name ${prod.nombre} - $${prod.precio} (${prod.categoria})
+      <button class="deleteProduct" data-id="${prod.id}">Delete</button>
+      <button class="editProduct" data-id="${prod.id}">Edit</button>
     </li>`;
   });
-
+  // If the user clicks delete, this function will be executed
   document.querySelectorAll(".deleteProduct").forEach((button) => {
     button.addEventListener("click", (e) => {
       const id = e.target.getAttribute("data-id");
       eliminarProducto(id);
     });
   });
-
+  // If the user clicks edit, this function will be executed
   document.querySelectorAll(".editProduct").forEach((button) => {
     button.addEventListener("click", (e) => {
       const id = e.target.getAttribute("data-id");
@@ -104,6 +113,7 @@ function mostrarProductos() {
   });
 }
 
+// Function to find the identifier among products and delete the selected product
 function eliminarProducto(id) {
   axios.delete(`http://localhost:3000/productos/${id}`)
     .then(() => {
@@ -112,10 +122,11 @@ function eliminarProducto(id) {
       mostrarProductos();
     })
     .catch(() => {
-      console.error("Error al eliminar producto");
+      console.error("Error deleting the product");
     });
 }
 
+// This function allows editing name, price, and category
 function editarProducto(id) {
   const producto = productos.find(p => p.id == id);
   if (!producto) return;
@@ -153,82 +164,6 @@ window.addEventListener("DOMContentLoaded", () => obtenerProductos());
 
 
 
-
-// Función para agregar un producto
-// $botonAgregarProducto.addEventListener("click", () => {
-  
-//   let nombre = $nombreProducto.value;
-//   let precio = parseFloat($precioProducto.value);
-//   let categoria = $categoriaProducto.value;
-
-//   // Validar campos
-//   if ( nombre === "" || isNaN(precio) || categoria === "") {
-//     alertErrorCampos();
-//     return;
-//   }
-
-//   const productoDuplicado = productos.some(
-//     (e) =>
-
-//       e.nombre === nombre &&
-//       e.precio === precio &&
-//       e.categoria === categoria
-//   );
-
-//   if (productoDuplicado) {
-//     alertErrorDuplicados()
-//     return;
-//   }
-
- 
-
-//   const nombreDuplicado = productos.some((e) => e.nombre === nombre);
-//   if (nombreDuplicado) {
-//     alertErrorNombreDuplicado()
-//     return;
-//   }
-
-//   const nuevoProducto = {
-   
-//     nombre: nombre,
-//     precio: precio,
-//     categoria: categoria,
-//   };
-
-//   productos.push(nuevoProducto);
-//   alertNuevoProductos();
-//   mostrarProductos();
-//   limpiarCamposProducto();
-    
-  
-// });
-
-// function mostrarProductos() {
-
-//   $listaProductos.innerHTML = "";
-//   productos.forEach((prod) => {
-//     $listaProductos.innerHTML += `<li>
-//       nombre ${prod.nombre} - $${prod.precio} (${prod.categoria})
-//       <button class="deleteProduct" data-nombre="${prod.nombre}">Eliminar</button>
-//     </li>`;
-//   });
-
-//   // Agregar eventos a botones de eliminar
-//   document.querySelectorAll(".deleteProduct").forEach((button) => {
-//     button.addEventListener("click", (e) => {
-//       const nombreDuplicado = e.target.getAttribute("data-nombre");
-//       eliminarProducto(nombreDuplicado);
-//     });
-//   });
-// }
-
-// function eliminarProducto(nombre) {
-//   productos = productos.filter((prod) => prod.nombre!== nombre);
-
-//   mostrarProductos();
-//   alertEliminarProducto();
-
-// }
 
 
 

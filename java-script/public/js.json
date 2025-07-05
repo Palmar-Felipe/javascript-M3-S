@@ -1,28 +1,3 @@
 {
-  "productos": [
-    {
-      "nombre": "sapo",
-      "precio": 322,
-      "categoria": "alimento",
-      "id": "b6c3"
-    },
-    {
-      "id": "20da",
-      "nombre": "s222",
-      "precio": 1111,
-      "categoria": "alimento"
-    },
-    {
-      "id": "7791",
-      "nombre": "1211",
-      "precio": 121,
-      "categoria": "2312"
-    },
-    {
-      "id": "bbc1",
-      "nombre": "1111",
-      "precio": 22222,
-      "categoria": "alimento"
-    }
-  ]
+  "productos": []
 }

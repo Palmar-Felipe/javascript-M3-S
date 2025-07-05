@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-  <head>
+  <head><!--metaestiquetas-->
     <meta charset="UTF-8" />
     <meta name="description"
         content="sistema interactivo que permitirá al usuario ingresar datos y recibir mensajes dinámicos de manera estructurada. ">
@@ -16,43 +16,30 @@
     <title>CRUD</title>
   </head>
   <body>
+    <!--encabezado-->
     <header>
-      <h1>CRUD Coders</h1>
+      <h1>Registro de productos</h1>
     </header>
-
+    <!--interaccion para el usuario-->
     <main>
       <section>
-   
-        <article>
-          <h2>Best-Selling Products</h2>
-          <nav>
-            <li>
-              ID: 001, Name: iPhone XS, Price: 3000
-            </li>
-            <li>
-              ID: 002, Name: iPhone XS, Price: 3000
-            </li>
-            <li>
-              ID: 003, Name: Tablet, Price: 4000
-            </li>
-          </nav>
-        </article>
-        <article>
+        <form action="">
           <h2>Add Product</h2>
           <input type="text" id="productName" placeholder="Product name">
           <input type="number" id="productPrice" placeholder="Price">
           <input type="text" id="productCategory" placeholder="Category">
           <button id="addProductButton">Add Product</button>
+        </form>
 
-          <h3>Product List:</h3>
-          <ul id="productList"></ul>
-        </article>
+        <h3>Product List:</h3>
+        <ul id="productList"></ul>
+    
       </section>
     </main>
-
+    <!--pie de pagina-->
     <footer>
-      <span>This is a practice project</span>
+      <p>This is a practice project</p>
     </footer>
-   
+   <!--vinculo del java-script-->
     <script type="module" src="./src/js/gestión_api.js"></script>
   </body>
