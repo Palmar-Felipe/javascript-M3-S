@@ -1,48 +1,3 @@
-# CRUD de Productos
-
-Este proyecto es un sistema interactivo que permite al usuario gestionar productos mediante un CRUD (Crear, Leer, Actualizar y Eliminar). Está desarrollado en JavaScript y utiliza `axios` para realizar solicitudes HTTP a un servidor local.
-
-## Características
-
-- **Agregar productos**: Permite añadir productos con nombre, precio y categoría.
-- **Editar productos**: Modifica los datos de un producto existente.
-- **Eliminar productos**: Elimina productos de la lista.
-- **Listar productos**: Muestra todos los productos registrados.
-- **Alertas dinámicas**: Utiliza `SweetAlert2` para mostrar mensajes interactivos.
-
-## Tecnologías utilizadas
-
-- **HTML**: Estructura del proyecto.
-- **CSS**: Estilos elegantes y responsivos.
-- **JavaScript**: Lógica del CRUD.
-- **Axios**: Manejo de solicitudes HTTP.
-- **SweetAlert2**: Alertas dinámicas.
-- **JSON Server**: Servidor local para simular una API REST.
-
-## Instalación
-
-1. Clona este repositorio:
-   ```bash
-   git clone https://github.com/Palmar-Felipe/javascript-M3-S.git
-
-## Uso
-Agregar un producto:
-
-Ingresa el nombre, precio y categoría del producto en los campos correspondientes.
-Haz clic en el botón "Add Product".
-Editar un producto:
-
-Haz clic en el botón "Editar" junto al producto que deseas modificar.
-Cambia los datos en los campos y haz clic en "Add Product" para guardar los cambios.
-Eliminar un producto:
-
-Haz clic en el botón "Eliminar" junto al producto que deseas eliminar.
-Listar productos:
-
-Los productos se muestran automáticamente en la lista.
-
-
-
 # Product CRUD
 
 This project is an interactive system that allows users to manage products through a CRUD (Create, Read, Update, and Delete). It is developed in JavaScript and uses `axios` to make HTTP requests to a local server.
@@ -144,3 +99,4 @@ Caiman
 ## License
 
 This project is licensed under © Felipe Miguel Palmar Ramirez. All rights reserved.
+
